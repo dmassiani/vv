@@ -2,7 +2,7 @@
 
 #
 # Variable VVV - A VVV Site Setup Script
-# By Brad Parbs <brad@bradparbs.com>
+# By Brad Parbs <brad@dmassianiarbs.com>
 # Originally by Alison Barrett <alison@barre.tt>
 #
 # Version 1.10.2
@@ -280,7 +280,7 @@ __vv__check_for_update() {
 	__vv__hook "pre_update_check"
 	if [[ ! -z $(which curl) ]]; then
 		__vv__hook "pre_github_update_check"
-		github_version=$(curl -s https://api.github.com/repos/bradp/vv/tags | grep --color=never "\"name\": \"" | head -n 1 | sed 's/"name": "//' | sed 's/",//' | sed 's/ //g' )
+		github_version=$(curl -s https://api.github.com/repos/dmassiani/vv/tags | grep --color=never "\"name\": \"" | head -n 1 | sed 's/"name": "//' | sed 's/",//' | sed 's/ //g' )
 		__vv__hook "post_github_update_check"
 		if [[ ! -z "$github_version" ]]; then
 			if [[ ! "$version_number" = "$github_version" ]]; then
@@ -332,8 +332,8 @@ __vv__update_vv() {
 
 __vv__vv_bootstrap_update() {
 	__vv__hook "pre_vv_bootstrap_update"
-	github_version=$(curl -s https://api.github.com/repos/bradp/vv/tags | grep --color=never "\"name\": \"" | head -n 1 | sed 's/"name": "//' | sed 's/",//' | sed 's/ //g' )
-	download_link=https://github.com/bradp/vv/archive/"$github_version".tar.gz
+	github_version=$(curl -s https://api.github.com/repos/dmassiani/vv/tags | grep --color=never "\"name\": \"" | head -n 1 | sed 's/"name": "//' | sed 's/",//' | sed 's/ //g' )
+	download_link=https://github.com/dmassiani/vv/archive/"$github_version".tar.gz
 	vv_install_location=$(which vv)
 	curl -L -o "$home/$github_version.tar.gz" "$download_link" 2>/dev/null
 	tar -C "$home" -zxvf "$home/$github_version.tar.gz" 2>/dev/null
@@ -358,7 +358,7 @@ __vv__auto_update_main() {
 			epoch_target=7
 			if [[ $epoch_diff -gt $epoch_target ]]; then
 				__vv__info "vv is out of date. Checking for update."
-				github_version=$(curl -s https://api.github.com/repos/bradp/vv/tags | grep "\"name\": \"" | head -n 1 | sed 's/"name": "//' | sed 's/",//' | sed 's/ //g' )
+				github_version=$(curl -s https://api.github.com/repos/dmassiani/vv/tags | grep "\"name\": \"" | head -n 1 | sed 's/"name": "//' | sed 's/",//' | sed 's/ //g' )
 				if [[ ! "$version_number" = "$github_version" ]]; then
 					__vv__update_vv
 				fi
@@ -1466,7 +1466,7 @@ __vv__deployment_config() {
 
 __vv__create_blueprints() {
 	if [[ ! -f "$path"/vv-blueprints.json ]]; then
-		curl -o "$path"/vv-blueprints.json -s https://raw.githubusercontent.com/bradp/vv/vv-install/vv-blueprints.json
+		curl -o "$path"/vv-blueprints.json -s https://raw.githubusercontent.com/dmassiani/vv/vv-install/vv-blueprints.json
 		__vv__success "Created sample blueprints file at $path/vv-blueprints.json."
 	else
 		__vv__info "You already have a vv-blueprints.json file created."
