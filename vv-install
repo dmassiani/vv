@@ -10,7 +10,7 @@
  */
 function main( $blueprint, $path = 'htdocs', $site_name, $domain ) {
 	echo "Setting up blueprint $blueprint...\n";
-	$blueprints = json_decode( file_get_contents( 'vv-blueprints.json' ) );
+	$blueprints = json_decode( file_get_contents( '../vv-blueprints.json' ) );
 
 	// Add constants first, so they're available to plugins and themes
 	// upon activation or future manipulation.
